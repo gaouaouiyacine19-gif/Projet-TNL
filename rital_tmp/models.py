@@ -1,25 +1,13 @@
 from sklearn.linear_model import LogisticRegression
+from sklearn.naive_bayes import MultinomialNB
 
 
+# EREGRESSION LOGISTIC
 def train_logistic_regression(X_train, y_train, balanced=False):
     """
-    Entraîne un modèle de Logistic Regression.
-
-    Parameters
-    ----------
-    X_train : sparse matrix
-        Données d'entraînement
-    y_train : list
-        Labels d'entraînement
-    balanced : bool
-        Si True → corrige le déséquilibre des classes
-
-    Returns
-    -------
-    model : LogisticRegression
-        Modèle entraîné
+    Régression logistique : modèle linéaire de classification.
+    Peut gérer les classes déséquilibrées.
     """
-
     #création du modèle
     if balanced:
         model = LogisticRegression(max_iter=1000, class_weight='balanced')
@@ -29,4 +17,14 @@ def train_logistic_regression(X_train, y_train, balanced=False):
     #entraînement du modèle
     model.fit(X_train, y_train)
 
+    return model
+
+# NAIVE BAYES
+def train_naive_bayes(X_train, y_train):
+    """
+    Naive Bayes : modèle probabiliste adapté au texte (TF-IDF).
+    Suppose l'indépendance des mots.
+    """
+    model = MultinomialNB()
+    model.fit(X_train, y_train)
     return model
