@@ -1,6 +1,6 @@
 from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import MultinomialNB
-
+from sklearn.svm import LinearSVC
 
 # EREGRESSION LOGISTIC
 def train_logistic_regression(X_train, y_train, balanced=False):
@@ -26,5 +26,15 @@ def train_naive_bayes(X_train, y_train):
     Suppose l'indépendance des mots.
     """
     model = MultinomialNB()
+    model.fit(X_train, y_train)
+    return model
+
+# SVM
+def train_svm(X_train, y_train):
+    """
+    SVM : modèle puissant pour classification texte.
+    Cherche la meilleure frontière entre les classes.
+    """
+    model = LinearSVC()
     model.fit(X_train, y_train)
     return model
